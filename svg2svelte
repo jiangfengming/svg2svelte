@@ -1,0 +1,38 @@
+#!/usr/bin/env node
+const yargs = require('yargs');
+const child_process = require('child_process');
+const path = require('path');
+const fs = require('fs');
+
+function svgo(config, file) {
+  return child_process.spawnSync('npx', ['svgo', '--config', config, file]);
+}
+
+function convert(svg) {
+  return `<script>
+export let width;
+export let height;
+export let fill;
+</script>
+
+${svg.replace('>', ' {width} height={width === undefined && height === undefined ? \'1em\' : height} fill={fill === undefined ? \'currentColor\' : fill} on:click>')}`;
+}
+
+const argv = yargs.command(
+  '$0 <svg> <svelte>',
+  'Convert a svg file to a svelte component.',
+  args => args
+    .option('svgo-config', {
+      describe: 'Svgo config file',
+      default: path.join(__dirname, 'svgo.yml')
+    })
+    .example('svg2svelte menu.svg IconMenu.svelte')
+)
+  .help()
+  .alias('config', 'c')
+  .alias('version', 'v')
+  .alias('help', 'h')
+  .argv;
+
+svgo(argv.svgoConfig, argv.svg);
+fs.writeFileSync(argv.svelte, convert(fs.readFileSync(argv.svg, 'utf8')));

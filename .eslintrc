@@ -1,0 +1,22 @@
+{
+  "parserOptions": {
+    "parser": "babel-eslint"
+  },
+
+  "extends": [
+    "enough"
+  ],
+
+  "env": {
+    "browser": true,
+    "node": true
+  },
+
+  "plugins": [
+    "ext"
+  ],
+
+  "rules": {
+    "ext/lines-between-object-properties": ["error", "always", { "exceptBetweenSingleLines": true }]
+  }
+}

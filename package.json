@@ -1,0 +1,32 @@
+{
+  "name": "svg2svelte",
+  "version": "0.0.0",
+  "description": "Command line tool to convert SVG to Svelte component",
+  "bin": "svg2svelte",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jiangfengming/svg2svelte.git"
+  },
+  "keywords": [
+    "svg",
+    "svelte"
+  ],
+  "author": "Jiang Fengming",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jiangfengming/svg2svelte/issues"
+  },
+  "homepage": "https://github.com/jiangfengming/svg2svelte#readme",
+  "devDependencies": {
+    "babel-eslint": "^10.1.0",
+    "eslint": "^7.14.0",
+    "eslint-config-enough": "^0.6.0",
+    "eslint-plugin-ext": "^0.1.0"
+  },
+  "dependencies": {
+    "yargs": "^16.1.1"
+  }
+}
