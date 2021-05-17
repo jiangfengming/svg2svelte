@@ -17,7 +17,7 @@ const argv = yargs.command(
     })
     .option('config', {
       describe: 'svgo config file path',
-      default: path.join(__dirname, 'svgo.yml')
+      default: path.join(__dirname, 'svgo.config.js')
     })
     .example('svg2svelte menu.svg IconMenu.svelte')
 )

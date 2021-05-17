@@ -1,12 +1,8 @@
-const child_process = require('child_process');
+const { loadConfig, extendDefaultPlugins, optimize } = require('svgo');
 const path = require('path');
 const fs = require('fs');
 
-const defaultConfig = path.join(__dirname, 'svgo.yml');
-
-function svgo(file, config) {
-  return child_process.spawnSync('npx', ['svgo', '--config', config, file]);
-}
+const defaultConfigFile = path.join(__dirname, 'svgo.config.js');
 
 function convert(svg) {
   return `<script>
@@ -23,7 +19,16 @@ export { className as class };
 ${svg.replace('>', ' {style} class={className} {width} height={width === null && height === null ? \'1em\' : height} fill={fill === null ? \'currentColor\' : fill} on:click>')}`;
 }
 
-module.exports = function(input, output, config = defaultConfig) {
-  svgo(input, config);
-  fs.writeFileSync(output, convert(fs.readFileSync(input, 'utf8')));
+module.exports = async function(input, output, configFile = defaultConfigFile) {
+  const config = await loadConfig(configFile);
+  const data = fs.readFileSync(input, 'utf8');
+
+  const result = optimize(data, {
+    path: input,
+    ...config,
+    plugins: extendDefaultPlugins(config.plugins)
+  });
+
+  fs.writeFileSync(input, result.data);
+  fs.writeFileSync(output, convert(result.data));
 };

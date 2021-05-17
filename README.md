@@ -10,7 +10,7 @@ npx svg2svelte icon.svg Icon.svelte
 ### Library
 ```js
 const svg2svelte = require('svg2svelte');
-svg2svelte('icon.svg', 'Icon.svelte');
+await svg2svelte('icon.svg', 'Icon.svelte');
 ```
 
 ### Component Props
