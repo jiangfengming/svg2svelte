@@ -6,17 +6,17 @@ const defaultConfigFile = path.join(__dirname, 'svgo.config.js');
 
 function convert(svg) {
   return `<script>
-export let width = null;
-export let height = null;
-export let fill = null;
-export let style = null;
+  let className = undefined;
 
-let className = null;
-
-export { className as class };
+  export { className as class };
+  export let width = undefined;
+  export let height = undefined;
+  export let fill = 'currentColor';
+  export let style = undefined;
 </script>
 
-${svg.replace('>', ' {style} class={className} {width} height={width === null && height === null ? \'1em\' : height} fill={fill === null ? \'currentColor\' : fill} on:click>')}`;
+${svg.replace('>', ' {style} class={className} {width} height={!width && !height ? \'1em\' : height} {fill} on:click>')}
+`;
 }
 
 module.exports = async function(input, output, configFile = defaultConfigFile) {

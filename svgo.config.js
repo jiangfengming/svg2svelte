@@ -23,6 +23,7 @@ module.exports = {
 
     {
       name: 'removeAttrs',
+
       params: {
         attrs: [
           'svg:width',

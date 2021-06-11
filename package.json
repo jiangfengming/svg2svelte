@@ -23,7 +23,7 @@
   "homepage": "https://github.com/jiangfengming/svg2svelte#readme",
   "devDependencies": {
     "babel-eslint": "^10.1.0",
-    "eslint": "^7.26.0",
+    "eslint": "^7.28.0",
     "eslint-config-enough": "^0.7.0",
     "eslint-plugin-ext": "^0.1.0"
   },
