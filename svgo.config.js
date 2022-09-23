@@ -2,6 +2,7 @@ module.exports = {
   multipass: true,
 
   plugins: [
+    'preset-default',
     'cleanupListOfValues',
     'removeRasterImages',
     'sortAttrs',

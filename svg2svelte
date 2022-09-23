@@ -8,23 +8,25 @@ const argv = yargs.command(
   'Convert a svg file to a svelte component.',
   args => args
     .positional('input', {
-      describe: 'svg input file path',
-      type: 'string'
+      type: 'string',
+      describe: 'svg input file path'
     })
     .positional('output', {
-      describe: 'svelte output file path',
-      type: 'string'
+      type: 'string',
+      describe: 'svelte output file path'
+    })
+    .option('ts', {
+      type: 'boolean',
+      describe: 'typescript'
     })
     .option('config', {
+      alias: 'c',
       describe: 'svgo config file path',
       default: path.join(__dirname, 'svgo.config.js')
     })
     .example('svg2svelte menu.svg IconMenu.svelte')
 )
   .help()
-  .alias('config', 'c')
-  .alias('version', 'v')
-  .alias('help', 'h')
   .argv;
 
-convert(argv.input, argv.output, argv.config);
+convert(argv.input, argv.output, argv.ts, argv.config);
