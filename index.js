@@ -28,7 +28,7 @@ function convert(svg, ts) {
   return script + '\n\n' +
     svg.replace(
       '>',
-      ' {style} class={className} {width} height={!width && !height ? \'1em\' : height} {fill} on:click>'
+      ' {style} class={className} {width} height={!width && !height ? \'1em\' : height} {fill} on:click on:keydown on:keyup>'
     );
 }
 
