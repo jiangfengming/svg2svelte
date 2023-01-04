@@ -10,7 +10,7 @@ module.exports = {
     'removeScriptElement',
 
     {
-      name: 'cleanupIDs',
+      name: 'cleanupIds',
 
       params: {
         minify: false
