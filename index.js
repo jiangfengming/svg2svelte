@@ -7,8 +7,8 @@ const defaultConfigFile = path.join(__dirname, 'svgo.config.js');
 function convert(svg, ts) {
   const script = ts
     ? `<script lang="ts">
-  export let width: number | string | undefined;
-  export let height: number | string | undefined;
+  export let width: number | string | undefined = undefined;
+  export let height: number | string | undefined = undefined;
   export let fill = 'currentColor';
 </script>`
     : `<script>
