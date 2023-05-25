@@ -22,11 +22,10 @@
   },
   "homepage": "https://github.com/jiangfengming/svg2svelte#readme",
   "devDependencies": {
-    "eslint": "^8.37.0",
-    "eslint-config-unambiguous": "^0.7.1"
+    "eslint": "^8.41.0"
   },
   "dependencies": {
     "svgo": "^3.0.2",
-    "yargs": "^17.7.1"
+    "yargs": "^17.7.2"
   }
 }

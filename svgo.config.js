@@ -2,43 +2,32 @@ module.exports = {
   multipass: true,
 
   plugins: [
-    'preset-default',
-    'cleanupListOfValues',
-    'removeRasterImages',
-    'sortAttrs',
-    'removeDimensions',
-    'removeScriptElement',
-
     {
-      name: 'cleanupIds',
-
+      name: "preset-default",
       params: {
-        minify: false
-      }
+        overrides: {
+          removeViewBox: false,
+          removeUselessStrokeAndFill: {
+            stroke: false,
+          },
+        },
+      },
     },
+    "cleanupListOfValues",
+    "removeRasterImages",
+    "removeDimensions",
+    "removeScriptElement",
 
     {
-      name: 'removeViewBox',
-      active: false
-    },
-
-    {
-      name: 'removeAttrs',
-
+      name: "removeAttrs",
       params: {
-        attrs: [
-          'svg:width',
-          'svg:height',
-          'svg:fill',
-          'svg:class',
-          'p-id'
-        ]
-      }
-    }
+        attrs: ["svg:width", "svg:height", "svg:fill", "svg:class", "p-id"],
+      },
+    },
   ],
 
   js2svg: {
     pretty: true,
-    indent: 2
-  }
+    indent: 2,
+  },
 };

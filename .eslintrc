@@ -1,6 +1,6 @@
 {
   "extends": [
-    "unambiguous"
+    "eslint:recommend"
   ],
 
   "env": {

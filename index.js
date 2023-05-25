@@ -1,8 +1,8 @@
-const { loadConfig, optimize } = require('svgo');
-const path = require('path');
-const fs = require('fs');
+const { loadConfig, optimize } = require("svgo");
+const path = require("path");
+const fs = require("fs");
 
-const defaultConfigFile = path.join(__dirname, 'svgo.config.js');
+const defaultConfigFile = path.join(__dirname, "svgo.config.js");
 
 function convert(svg, ts) {
   const script = ts
@@ -17,19 +17,29 @@ function convert(svg, ts) {
   export let fill = 'currentColor';
 </script>`;
 
-  const p = svg.indexOf('>');
+  const p = svg.indexOf(">");
 
-  return script + '\n\n' +
-    svg.slice(0, p) + ' {width} height={!width && !height ? \'1em\' : height} {fill} {...$$restProps} on:click on:keydown on:keyup>' + svg.slice(p + 1);
+  return (
+    script +
+    "\n\n" +
+    svg.slice(0, p) +
+    " {width} height={!width && !height ? '1em' : height} {fill} {...$$restProps} on:click on:keydown on:keyup>" +
+    svg.slice(p + 1)
+  );
 }
 
-module.exports = async function(input, output, ts, configFile = defaultConfigFile) {
+module.exports = async function (
+  input,
+  output,
+  ts,
+  configFile = defaultConfigFile
+) {
   const config = await loadConfig(configFile);
-  const data = fs.readFileSync(input, 'utf8');
+  const data = fs.readFileSync(input, "utf8");
 
   const result = optimize(data, {
     path: input,
-    ...config
+    ...config,
   });
 
   fs.writeFileSync(input, result.data);
