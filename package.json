@@ -1,6 +1,6 @@
 {
   "name": "svg2svelte",
-  "version": "0.3.4",
+  "version": "0.3.5",
   "description": "Command line tool to convert SVG to Svelte component",
   "bin": "svg2svelte",
   "main": "index.js",
