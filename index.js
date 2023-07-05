@@ -20,8 +20,8 @@ function convert(svg, ts) {
   const p = svg.indexOf(">");
 
   return (
-    script +
-    "\n\n" +
+    script + "\n\n" +
+    "<!-- svelte-ignore a11y-no-static-element-interactions -->" +
     svg.slice(0, p) +
     " {width} height={!width && !height ? '1em' : height} {fill} {...$$restProps} on:click on:keydown on:keyup>" +
     svg.slice(p + 1)
