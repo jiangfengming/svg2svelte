@@ -1,33 +1,37 @@
-module.exports = {
+export default {
   multipass: true,
 
   plugins: [
     {
-      name: "preset-default",
+      name: 'preset-default',
       params: {
         overrides: {
           removeViewBox: false,
           removeUselessStrokeAndFill: {
-            stroke: false,
-          },
-        },
-      },
+            stroke: false
+          }
+        }
+      }
     },
-    "cleanupListOfValues",
-    "removeRasterImages",
-    "removeDimensions",
-    "removeScriptElement",
+    'cleanupListOfValues',
+    'removeRasterImages',
+    'removeDimensions',
+    'removeScriptElement',
 
     {
-      name: "removeAttrs",
+      name: 'removeAttrs',
       params: {
-        attrs: ["svg:width", "svg:height", "svg:fill", "svg:class", "p-id"],
-      },
+        attrs: ['svg:width', 'svg:height', 'svg:fill', 'svg:class', 'p-id']
+      }
     },
+
+    {
+      name: 'prefixIds'
+    }
   ],
 
   js2svg: {
     pretty: true,
-    indent: 2,
-  },
-};
+    indent: 2
+  }
+}

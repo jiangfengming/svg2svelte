@@ -1,8 +1,13 @@
-const { loadConfig, optimize } = require("svgo");
-const path = require("path");
-const fs = require("fs");
+import fs from 'fs'
+import path from 'path'
+import { loadConfig, optimize } from 'svgo'
+import { fileURLToPath } from 'url'
 
-const defaultConfigFile = path.join(__dirname, "svgo.config.js");
+const defaultConfigFile = path.join(
+  fileURLToPath(import.meta.url),
+  '..',
+  'svgo.config.js'
+)
 
 function convert(svg, ts) {
   const script = ts
@@ -15,29 +20,29 @@ function convert(svg, ts) {
   export let width;
   export let height;
   export let fill = 'currentColor';
-</script>`;
+</script>`
 
-  const p = svg.indexOf(">");
+  const p = svg.indexOf('>')
 
   return `${script}
 <!-- svelte-ignore a11y-no-static-element-interactions -->
-${svg.slice(0, p)} {width} height={!width && !height ? "1em" : height} {fill} {...$$restProps} on:click on:keydown on:keyup>${svg.slice(p + 1)}`;
+${svg.slice(0, p)} {width} height={!width && !height ? "1em" : height} {fill} {...$$restProps} on:click on:keydown on:keyup>${svg.slice(p + 1)}`
 }
 
-module.exports = async function (
+export default async function (
   input,
   output,
   ts,
   configFile = defaultConfigFile
 ) {
-  const config = await loadConfig(configFile);
-  const data = fs.readFileSync(input, "utf8");
+  const config = await loadConfig(configFile)
+  const data = fs.readFileSync(input, 'utf8')
 
   const result = optimize(data, {
     path: input,
-    ...config,
-  });
+    ...config
+  })
 
-  fs.writeFileSync(input, result.data);
-  fs.writeFileSync(output, convert(result.data, ts));
-};
+  fs.writeFileSync(input, result.data)
+  fs.writeFileSync(output, convert(result.data, ts))
+}
